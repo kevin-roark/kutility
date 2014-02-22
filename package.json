@@ -1,6 +1,6 @@
 {
   "name": "kutility",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Kev + utility == javascript functions that I use a lot and might be helpful for others like me WHO KNOWS",
   "main": "index.js",
   "scripts": {
