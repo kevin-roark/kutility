@@ -1,0 +1,22 @@
+{
+  "name": "kutility",
+  "version": "0.0.1",
+  "description": "Kev + utility == javascript functions that I use a lot and might be helpful for others like me WHO KNOWS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevin-roark/kutility.git"
+  },
+  "keywords": [
+    "utility"
+  ],
+  "author": "Kevin Roark (porfkat)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevin-roark/kutility/issues"
+  },
+  "homepage": "https://github.com/kevin-roark/kutility"
+}
