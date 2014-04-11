@@ -176,9 +176,9 @@ Kutility.prototype.rotate = function(el, x) {
  */
 Kutility.prototype.scale = function(el, x) {
   var ct = this.getTransform(el);
-  ct = ct.replace(/scale\(.*?\)/, '').replace('none', '');
+  ct = ct.replace(/matrix\(.*?\)/, '').replace('none', '');
 
-  var t = ' scale(' + x + ')';
+  var t = ' scale(' + x + ',' + x + ')';
   this.setTransform(el, ct + t);
 }
 
@@ -189,7 +189,7 @@ Kutility.prototype.scale = function(el, x) {
  */
 Kutility.prototype.translate = function(el, x, y) {
   var ct = this.getTransform(el);
-  ct = ct.replace(/translate\(.*?\)/, '').replace('none', '');
+  ct = ct.replace(/matrix\(.*?\)/, '').replace('none', '');
 
   var t = ' translate(' + x + ', '  + y + ')';
   this.setTransform(el, ct + t);
@@ -202,7 +202,7 @@ Kutility.prototype.translate = function(el, x, y) {
  */
 Kutility.prototype.skew = function(el, x, y) {
   var ct = this.getTransform(el);
-  ct = ct.replace(/skew\(.*?\)/, '').replace('none', '');
+  ct = ct.replace(/skew\(.*?\)/, '').replace(/matrix\(.*?\)/, '').replace('none', '');
 
   var xd = x + 'deg';
   var yd = y + 'deg';
@@ -211,17 +211,48 @@ Kutility.prototype.skew = function(el, x, y) {
 }
 
 /**
- * Warp an element by a random amount by rotating and skewing it.
+ * Warp an element by rotating and skewing it.
  *
  * @api public
  */
-Kutility.prototype.warp = function(el) {
-  var r = Math.floor(Math.random() * 360);
-  var x = Math.floor(Math.random() * 360);
-  var y = Math.floor(Math.random() * 360);
+Kutility.prototype.warp = function(el, d, x, y) {
+  var ct = this.getTransform(el);
+  ct = ct.replace(/matrix\(.*?\)/, '').replace('none', '');
 
-  this.rotate(el, r);
-  this.skew(el, x, y);
+  var r = ' rotate(' + d + 'deg)';
+  var xd = x + 'deg';
+  var yd = y + 'deg';
+  var s = ' skew(' + xd + ', ' + yd + ')';
+
+  this.setTransform(el, ct + r + s);
+}
+
+/**
+ * scale by w, translate x y
+ *
+ * @api public
+ */
+Kutility.prototype.slaw = function(el, w, x, y) {
+  var ct = this.getTransform(el);
+  ct = ct.replace(/matrix\(.*?\)/, '').replace('none', '');
+
+  var s = ' scale(' + w + ',' + w + ')';
+  var t = ' translate(' + x + ', '  + y + ')';
+  this.setTransform(el, ct + s + t);
+}
+
+/**
+ * scale by w, rotate by x
+ *
+ * @api public
+ */
+Kutility.prototype.straw = function(el, w, x) {
+  var ct = this.getTransform(el);
+  ct = ct.replace(/matrix\(.*?\)/, '').replace('none', '');
+
+  var s = ' scale(' + w + ',' + w + ')';
+  var r = ' rotate(' + x + 'deg)';
+  this.setTransform(el, ct + s + r);
 }
 
 /**
